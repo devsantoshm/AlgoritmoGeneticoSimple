@@ -14,7 +14,11 @@ public class TIndividuo implements Cloneable {
         Cromosoma = new TCromosoma(lcrom);
         SetAdaptacion();
     }
-    
+    public TIndividuo (TIndividuo Padre, TIndividuo Madre, int lcrom, int punto_cruce) {
+        //Cromosoma = new TCro
+        Cromosoma = new TCromosoma(Padre.GetCromosoma(), Madre.GetCromosoma(), lcrom, punto_cruce);
+        SetAdaptacion();
+    }
     private void SetAdaptacion() {
         float f;
         x=Cromosoma.decod();
@@ -22,9 +26,15 @@ public class TIndividuo implements Cloneable {
         f=(x / (1 + (x*x)));
         adaptacion=f;
     } 
-    
+    public void Mutar(float prob_mutacion) {
+        if (Cromosoma.mutar(prob_mutacion))
+            SetAdaptacion();
+    }
     public float GetAdaptacion(){
         return adaptacion;
+    }
+    public TCromosoma GetCromosoma () {
+        return Cromosoma;
     }
     public void SetPuntuacion(float _puntuacion) {
         puntuacion=_puntuacion;
@@ -43,7 +53,7 @@ public class TIndividuo implements Cloneable {
     private float puntuacion;
     private float punt_acu;
     private TCromosoma Cromosoma;
-    private boolean[] cromosoma;
+    //private boolean[] cromosoma;
     
     
 

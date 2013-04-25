@@ -13,17 +13,39 @@ import java.util.*;
 public class TCromosoma {
     public TCromosoma(int _lcrom) {
         lcrom=_lcrom;
-        Random rnd = new Random();
-        //int[] temp = null;
+        rnd = new Random();
         Genotipo=new boolean[lcrom];
         for (int i = 0; i < lcrom; i++)
             Genotipo[i] = rnd.nextBoolean();
+    }
+    public TCromosoma(TCromosoma Padre, TCromosoma Madre, int _lcrom, int _punto_cruce) {
+        lcrom=_lcrom;
+        Genotipo=new boolean[lcrom];
+        for (int i = 0; i < _punto_cruce; i++) {
+            Genotipo[i] = Padre.GetGen(i);
+        }
+        for (int i=_punto_cruce; i < lcrom; i++) {
+            Genotipo[i] = Madre.GetGen(i);
+        }
     }
     
     public float decod(){
         return (float) bin_int(Genotipo);
     }
-    
+    public boolean mutar(float prob_mutar) {
+        boolean mutado=false;
+        int i, j;
+        float prob; 
+        
+        for (i=0; i< lcrom; i++) {
+            prob = rnd.nextFloat();
+            if (prob < prob_mutar) 
+                Genotipo[i] = !(Genotipo[i]);
+            mutado=true;
+        }
+        return mutado;
+            
+    }
     private int bin_int(boolean[] _Genotipo ) {
         int d=0, pot=1;
         for (int i = 0; i < lcrom; i++) {
@@ -34,7 +56,15 @@ public class TCromosoma {
         return d;
     }
     
+    public boolean GetGen(int locus) {
+            return Genotipo[locus];
+    } 
+    
+    public boolean[] GetCromosoma() {
+        return Genotipo;
+    }
+    
     private int lcrom;
     private boolean[] Genotipo;
-    
+    Random rnd;
 }

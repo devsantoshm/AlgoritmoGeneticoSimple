@@ -19,7 +19,7 @@ public class AGSimple {
         for (String s: args){
             
         }
-        AlgoritmoGeneticoSimple Sim = new AlgoritmoGeneticoSimple(10, 8);
+        AlgoritmoGeneticoSimple Sim = new AlgoritmoGeneticoSimple(10, 8, 20, 0.5f, 0.01f); 
         
         Sim.run();
         
