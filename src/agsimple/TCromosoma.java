@@ -63,7 +63,16 @@ public class TCromosoma {
     public boolean[] GetCromosoma() {
         return Genotipo;
     }
-    
+    public String RepresentacionBinaria(){
+        String stringCadena = "";
+        for (int i=0; i < lcrom; i++) {
+            if (Genotipo[i])
+                stringCadena += "1";
+            else
+                stringCadena += "0";
+        }
+        return stringCadena;
+    }
     private int lcrom;
     private boolean[] Genotipo;
     Random rnd;

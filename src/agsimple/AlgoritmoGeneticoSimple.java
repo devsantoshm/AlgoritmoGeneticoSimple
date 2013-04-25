@@ -22,14 +22,24 @@ public class AlgoritmoGeneticoSimple {
         
     }
     public void run() {
+        int dummy=0;
         evaluacion();
         for (int generacion = 0; generacion < num_max_gen; generacion++){
             seleccion();
+            dummy=generacion;
             reproduccion();
             mutacion();
             evaluacion();
+            log();
         }
     }
+    
+    private void log() {
+        for (int i = 0; i<tam_pob; i++){
+            System.out.println("Cromosoma " + Pob[i].VerCromosoma());
+        }
+    }
+    
     private void evaluacion() {
         float punt_acu = 0;
         float adap_mejor = 0;
@@ -93,7 +103,7 @@ public class AlgoritmoGeneticoSimple {
         if ((num_sel_cruce % 2) == 1)
             num_sel_cruce--;
         punto_cruce=rnd.nextInt(lcrom);
-        for (i = 0; i<tam_pob; i++) {
+        for (i = 0; i<num_sel_cruce; i++) {
             hijo1 = new TIndividuo(Pob[sel_cruce[i]], Pob[sel_cruce[i+1]], lcrom, punto_cruce);
             hijo2 = new TIndividuo(Pob[sel_cruce[i+1]], Pob[sel_cruce[i]], lcrom, punto_cruce);
             Pob[sel_cruce[i]] = hijo1;

@@ -26,6 +26,9 @@ public class TIndividuo implements Cloneable {
         f=(x / (1 + (x*x)));
         adaptacion=f;
     } 
+    public String VerCromosoma() {
+        return Cromosoma.RepresentacionBinaria();
+    }
     public void Mutar(float prob_mutacion) {
         if (Cromosoma.mutar(prob_mutacion))
             SetAdaptacion();
