@@ -22,6 +22,7 @@ public class TIndividuo implements Cloneable {
     }
     private void SetAdaptacion() {
         float f;
+        //XXX Funcion de adaptacion, aqui esta el meollo del asunto, en esta funcion se calcula "que tan bueno es el individuo"
         x=Cromosoma.decod() * precision;
         //Aqui se coloca la funcion de adaptacion
         f=(x / (1 + (x*x)));
