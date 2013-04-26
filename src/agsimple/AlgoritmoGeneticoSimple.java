@@ -27,22 +27,26 @@ public class AlgoritmoGeneticoSimple {
         System.out.println("Generacion\t| Cromosoma\t\t| x\t\t\t| adaptacion\t| adaptacion media");
         evaluacion();
         for (int generacion = 0; generacion < num_max_gen; generacion++){
+            log(generacion);
             seleccion();
             reproduccion();
             mutacion();
             evaluacion();
-            log(generacion);
         }
     }
     
     private void log(int generacion) {
         float AdaptacionMedia=0;
-        for (int i=0; i< tam_pob; i++) 
+        for (int i=0; i< tam_pob; i++) {
+            System.out.println(i + "\t|" + Pob[i].VerCromosoma() + "\t|" + Pob[i].ValueCromosoma() + "\t|" + Pob[i].GetAdaptacion());
             AdaptacionMedia += Pob[i].GetAdaptacion();
+        }
         AdaptacionMedia = AdaptacionMedia/((float) tam_pob);
-        System.out.println(generacion + "\t\t| " + Pob[pos_mejor].VerCromosoma() + "\t| " + Pob[pos_mejor].ValueCromosoma() 
+        
+        System.out.println(pos_mejor + "\t\t| " + Pob[pos_mejor].VerCromosoma() + "\t| " + Pob[pos_mejor].ValueCromosoma() 
                 + "\t\t|" + Pob[pos_mejor].GetAdaptacion() + "\t| " + AdaptacionMedia);
-//        System.out.println(generacion + "\t\t| " + Pob[pos_mejor].VerCromosoma() + "\t| ";// + Pob[pos_mejor].ValueCromosoma() 
+
+        //        System.out.println(generacion + "\t\t| " + Pob[pos_mejor].VerCromosoma() + "\t| ";// + Pob[pos_mejor].ValueCromosoma() 
 //                + "\t\t|" + Pob[pos_mejor].GetAdaptacion()) + "\t| " + AdaptacionMedia;
         
         /*
