@@ -84,7 +84,6 @@ public class AlgoritmoGeneticoSimple {
             }
             sel_super[i] = pos_super;
         }
-        TIndividuo indiv=new TIndividuo(lcrom, precision); 
         TIndividuo[] PobAux=new TIndividuo[tam_pob];
         for (i=0; i < tam_pob; i++) {
             //indiv = Pob[sel_super[i]];
