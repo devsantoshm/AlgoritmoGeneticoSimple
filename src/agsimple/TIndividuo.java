@@ -10,22 +10,26 @@ package agsimple;
  */
 public class TIndividuo implements Cloneable {
     //TIndividuo es una clase final!!!
-    public TIndividuo (int lcrom) {
+    public TIndividuo (int lcrom, float _precision) {
+        precision=_precision;
         Cromosoma = new TCromosoma(lcrom);
         SetAdaptacion();
     }
-    public TIndividuo (TIndividuo Padre, TIndividuo Madre, int lcrom, int punto_cruce) {
+    public TIndividuo (TIndividuo Padre, TIndividuo Madre, int lcrom, float precision, int punto_cruce) {
         //Cromosoma = new TCro
         Cromosoma = new TCromosoma(Padre.GetCromosoma(), Madre.GetCromosoma(), lcrom, punto_cruce);
         SetAdaptacion();
     }
     private void SetAdaptacion() {
         float f;
-        x=Cromosoma.decod();
+        x=Cromosoma.decod() * precision;
         //Aqui se coloca la funcion de adaptacion
         f=(x / (1 + (x*x)));
         adaptacion=f;
     } 
+    public float ValueCromosoma() {
+        return x;
+    }
     public String VerCromosoma() {
         return Cromosoma.RepresentacionBinaria();
     }
@@ -52,6 +56,7 @@ public class TIndividuo implements Cloneable {
         return punt_acu;
     }
     private float x;
+    private float precision;
     private float adaptacion;
     private float puntuacion;
     private float punt_acu;

@@ -20,6 +20,7 @@ public class TCromosoma {
     }
     public TCromosoma(TCromosoma Padre, TCromosoma Madre, int _lcrom, int _punto_cruce) {
         lcrom=_lcrom;
+        rnd = new Random();
         Genotipo=new boolean[lcrom];
         for (int i = 0; i < _punto_cruce; i++) {
             Genotipo[i] = Padre.GetGen(i);
@@ -34,7 +35,7 @@ public class TCromosoma {
     }
     public boolean mutar(float prob_mutar) {
         boolean mutado=false;
-        int i, j;
+        int i;
         float prob; 
         
         for (i=0; i< lcrom; i++) {

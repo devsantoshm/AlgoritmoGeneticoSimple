@@ -25,7 +25,7 @@ public class AGSimple {
         float floatTasaDeCruces=0.40f;
         float floatTasaDeMutaciones=0.01f;
         int intTamanioPob=30;
-        int intNumGeneraciones=10;
+        int intNumGeneraciones=30;
         int intLargoCromosoma;
         float temp= 1.0f + (floatXMax-floatXMin) / floatPrecision;
         
@@ -34,7 +34,7 @@ public class AGSimple {
         //int _tam_pob, int _lcrom, int _num_max_gen, float _prob_cruce, float _prob_mutacion
         //AlgoritmoGeneticoSimple Sim = new AlgoritmoGeneticoSimple(30, 18, 10, 0.4f, 0.01f); 
         AlgoritmoGeneticoSimple Sim = 
-                new AlgoritmoGeneticoSimple(intTamanioPob, intLargoCromosoma, intNumGeneraciones, 
+                new AlgoritmoGeneticoSimple(intTamanioPob, intLargoCromosoma, floatPrecision, intNumGeneraciones, 
                                             floatTasaDeCruces, floatTasaDeMutaciones); 
         
         Sim.run();
