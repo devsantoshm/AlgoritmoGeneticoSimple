@@ -15,8 +15,9 @@ public class TIndividuo implements Cloneable {
         Cromosoma = new TCromosoma(lcrom);
         SetAdaptacion();
     }
-    public TIndividuo (TIndividuo Padre, TIndividuo Madre, int lcrom, float precision, int punto_cruce) {
+    public TIndividuo (TIndividuo Padre, TIndividuo Madre, int lcrom, float _precision, int punto_cruce) {
         //Cromosoma = new TCro
+        precision=_precision;
         Cromosoma = new TCromosoma(Padre.GetCromosoma(), Madre.GetCromosoma(), lcrom, punto_cruce);
         SetAdaptacion();
     }
@@ -27,7 +28,9 @@ public class TIndividuo implements Cloneable {
         //Aqui se coloca la funcion de adaptacion sugerida en el libro
         //f=(x / (1 + (x*x)));
         //Esta es la funcion de adaptacion sugerida por mi: f(x) = -((x-5)(x-15))
-        f=-(x*x) + (20.0f*x) - 75.0f;
+        //f=-(x*x) + (20.0f*x) - 75.0f;
+        //f(x) = -(x(x-25))
+        f=-x*x + 25*x;
         adaptacion=f;
     } 
     public float ValueCromosoma() {

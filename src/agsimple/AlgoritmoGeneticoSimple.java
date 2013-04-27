@@ -38,7 +38,7 @@ public class AlgoritmoGeneticoSimple {
     private void log(int generacion) {
         float AdaptacionMedia=0;
         for (int i=0; i< tam_pob; i++) {
-            System.out.println(i + "\t|" + Pob[i].VerCromosoma() + "\t|" + Pob[i].ValueCromosoma() + "\t|" + Pob[i].GetAdaptacion());
+//            System.out.println(i + "\t|" + Pob[i].VerCromosoma() + "\t|" + Pob[i].ValueCromosoma() + "\t|" + Pob[i].GetAdaptacion());
             AdaptacionMedia += Pob[i].GetAdaptacion();
         }
         AdaptacionMedia = AdaptacionMedia/((float) tam_pob);
@@ -70,7 +70,7 @@ public class AlgoritmoGeneticoSimple {
         }
         for (i=0; i < tam_pob; i++) {
             Pob[i].SetPuntuacion(Pob[i].GetAdaptacion() / sumadaptacion);
-            Pob[i].SetPuntuacionAcumulada(Pob[i].GetAdaptacion() + punt_acu);
+            Pob[i].SetPuntuacionAcumulada(Pob[i].GetPuntuacion() + punt_acu);
             punt_acu += Pob[i].GetPuntuacion();
         }
     }
@@ -80,6 +80,7 @@ public class AlgoritmoGeneticoSimple {
         float prob;
         int pos_super;
         int i;
+        //Ruleta
         for (i=0; i<tam_pob; i++) {
             prob=rnd.nextFloat();
             pos_super=0;
@@ -88,6 +89,7 @@ public class AlgoritmoGeneticoSimple {
             }
             sel_super[i] = pos_super;
         }
+        //Poblacion auxiliar 
         TIndividuo[] PobAux=new TIndividuo[tam_pob];
         for (i=0; i < tam_pob; i++) {
             //indiv = Pob[sel_super[i]];
