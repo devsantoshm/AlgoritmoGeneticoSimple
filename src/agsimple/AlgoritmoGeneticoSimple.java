@@ -37,8 +37,6 @@ public class AlgoritmoGeneticoSimple {
         }
     }
     
-
-    
     private void evaluacion(int generacion) {
         float punt_acu = 0;
         float adap_mejor = 0;

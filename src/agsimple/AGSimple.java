@@ -25,7 +25,7 @@ public class AGSimple {
         float floatXMin=0.0f, floatXMax=20.0f;
         float floatTasaDeCruces=0.40f;
         float floatTasaDeMutaciones=0.01f;
-        int intTamanioPob=30;
+        int intTamanioPob=300;
         int intNumGeneraciones=30;
         int intLargoCromosoma;
         float temp= 1.0f + (floatXMax-floatXMin) / floatPrecision;

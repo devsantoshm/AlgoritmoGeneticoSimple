@@ -21,6 +21,9 @@ public class EvolveLog {
             System.exit(-1);
         }
     } 
+    public void writeReproducciones(){
+        
+    } 
     public void writePoblacionResumeHeader() {
         outPoblacionResume.println("Campeon de");
         outPoblacionResume.println("cada generacion\t| Cromosoma\t\t| x\t\t\t| adaptacion\t| adaptacion media");
@@ -41,9 +44,9 @@ public class EvolveLog {
             outSelecciones.println("Individuo\t|Cromosoma\t|ValueCromosoma\t|Adaptacion");
     }
     public void writeIndividuo(TIndividuo Indiv, int i, String Archivo) {
-        if ("Poblacion".equals(Archivo))
+        if ("Poblacion".equals(Archivo)){
             outPoblacion.println(i + "\t|" + Indiv.VerCromosoma() + "\t|" + Indiv.ValueCromosoma() + "\t|" + Indiv.GetAdaptacion());
-        else if ("Seleccion".equals(Archivo))
+        }else if ("Seleccion".equals(Archivo))
             outSelecciones.println(i + "\t|" + Indiv.VerCromosoma() + "\t|" + Indiv.ValueCromosoma() + "\t|" + Indiv.GetAdaptacion());
     }
     public void writePoblacionEnd(int Generacion, String Archivo){
@@ -54,5 +57,6 @@ public class EvolveLog {
     }
     private PrintStream outPoblacion;
     private PrintStream outPoblacionResume;
-    private PrintStream outSelecciones         ;
+    private PrintStream outSelecciones    ;
+    private PrintStream outReproducciones ;
 }
