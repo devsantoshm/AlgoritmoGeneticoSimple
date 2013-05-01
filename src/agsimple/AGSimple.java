@@ -4,6 +4,7 @@
  */
 package agsimple;
 
+import java.io.*;
 //import java.math.*;
 /**
  *
@@ -41,5 +42,15 @@ public class AGSimple {
         
     }
     
+  private static PrintStream getPrintStream(String filename) {
+    PrintStream out=null;
+    try {
+      out = new PrintStream( new File(filename));
+    } catch(FileNotFoundException e) {
+      System.out.println("Error with file "+filename+":"+e.getMessage());
+      System.exit(-1);
+    } 
+    return out;
+  }
 
 }

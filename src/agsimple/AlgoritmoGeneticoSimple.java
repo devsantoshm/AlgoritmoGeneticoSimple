@@ -10,6 +10,7 @@ import java.util.*;
  */
 public class AlgoritmoGeneticoSimple {
     public AlgoritmoGeneticoSimple (int _tam_pob, int _lcrom, float _precision, int _num_max_gen, float _prob_cruce, float _prob_mutacion){
+        log=new EvolveLog("./AGLog");
         prob_mut=_prob_mutacion;
         lcrom=_lcrom;
         tam_pob=_tam_pob;
@@ -23,40 +24,22 @@ public class AlgoritmoGeneticoSimple {
         
     }
     public void run() {
-        System.out.println("Campeon");
-        System.out.println("Generacion\t| Cromosoma\t\t| x\t\t\t| adaptacion\t| adaptacion media");
-        evaluacion();
+        log.writePoblacionResumeHeader();
+        log.writePoblacionHeader(0, "Poblacion");
+        log.writePoblacionHeader(0, "Seleccion");
+        evaluacion(0);
         for (int generacion = 0; generacion < num_max_gen; generacion++){
-            log(generacion);
-            seleccion();
+            log.writePoblacionResume(Pob, pos_mejor);
+            seleccion(generacion);
             reproduccion();
             mutacion();
-            evaluacion();
+            evaluacion(generacion);
         }
     }
     
-    private void log(int generacion) {
-        float AdaptacionMedia=0;
-        for (int i=0; i< tam_pob; i++) {
-//            System.out.println(i + "\t|" + Pob[i].VerCromosoma() + "\t|" + Pob[i].ValueCromosoma() + "\t|" + Pob[i].GetAdaptacion());
-            AdaptacionMedia += Pob[i].GetAdaptacion();
-        }
-        AdaptacionMedia = AdaptacionMedia/((float) tam_pob);
-        
-        System.out.println(pos_mejor + "\t\t| " + Pob[pos_mejor].VerCromosoma() + "\t| " + Pob[pos_mejor].ValueCromosoma() 
-                + "\t\t|" + Pob[pos_mejor].GetAdaptacion() + "\t| " + AdaptacionMedia);
 
-        //        System.out.println(generacion + "\t\t| " + Pob[pos_mejor].VerCromosoma() + "\t| ";// + Pob[pos_mejor].ValueCromosoma() 
-//                + "\t\t|" + Pob[pos_mejor].GetAdaptacion()) + "\t| " + AdaptacionMedia;
-        
-        /*
-        for (int i = 0; i<tam_pob; i++){
-            System.out.println("Cromosoma " + Pob[i].VerCromosoma());
-        }
-        */
-    }
     
-    private void evaluacion() {
+    private void evaluacion(int generacion) {
         float punt_acu = 0;
         float adap_mejor = 0;
         int i;
@@ -72,10 +55,12 @@ public class AlgoritmoGeneticoSimple {
             Pob[i].SetPuntuacion(Pob[i].GetAdaptacion() / sumadaptacion);
             Pob[i].SetPuntuacionAcumulada(Pob[i].GetPuntuacion() + punt_acu);
             punt_acu += Pob[i].GetPuntuacion();
+            log.writeIndividuo(Pob[i], i, "Poblacion");
         }
+        log.writePoblacionEnd(generacion, "Poblacion");
     }
     
-    private void seleccion () {
+    private void seleccion (int generacion) {
         int [] sel_super = new int[tam_pob];
         float prob;
         int pos_super;
@@ -95,10 +80,12 @@ public class AlgoritmoGeneticoSimple {
             //indiv = Pob[sel_super[i]];
             //System.arraycopy(Pob, sel_super[i], PobAux, i, 1);
             PobAux[i] = Pob[sel_super[i]];
+            log.writeIndividuo(PobAux[i], sel_super[i], "Seleccion");
         }
         for (i=0; i< tam_pob; i++) {
             Pob[i] = PobAux[i];
         }
+        log.writePoblacionEnd(generacion, "Seleccion");
     }
     
     private void reproduccion() {
@@ -132,7 +119,7 @@ public class AlgoritmoGeneticoSimple {
             Pob[i].Mutar(prob_mut);
         
     }
-    
+    private EvolveLog log;
     private int tam_pob;
     private float precision;
     private int lcrom;

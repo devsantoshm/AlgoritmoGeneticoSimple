@@ -1,7 +1,8 @@
 build/
 
 *.class
-
+*.swp
+AGLog*
 # Package Files #
 *.jar
 *.war
