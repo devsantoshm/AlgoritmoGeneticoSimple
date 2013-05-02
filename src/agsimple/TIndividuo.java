@@ -32,6 +32,8 @@ public class TIndividuo implements Cloneable {
         //f(x) = -(x(x-25))
         //f=-x*x + 25*x;
         
+        
+        
         //f=(float) Math.sin(Math.PI);
         //f= (float) (2 + Math.sin(30.0*((double) x))); //-x*x + 25*x;
         f= (float) (2 + Math.sin((double)(x*Math.PI)/6.0)); //-x*x + 25*x;

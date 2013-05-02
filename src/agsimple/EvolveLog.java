@@ -16,13 +16,23 @@ public class EvolveLog {
             outPoblacion            = new PrintStream( new File(filename+"Poblacion"));
             outPoblacionResume      = new PrintStream( new File(filename+"PoblacionResume"));
             outSelecciones          = new PrintStream( new File(filename+"Selecciones"));
+            outReproducciones       = new PrintStream( new File(filename+"Reproducciones"));
         } catch (FileNotFoundException e) {
             System.out.println("Error with file "+filename+":"+e.getMessage());
             System.exit(-1);
         }
     } 
-    public void writeReproducciones(){
-        
+    public void writeReproduccionesEnd(){
+        outReproducciones.println("\n");
+    }
+    public void writeReproducciones(TIndividuo Padre, TIndividuo Madre, TIndividuo Hijo1, TIndividuo Hijo2, int punto_cruce){
+        outReproducciones.println(punto_cruce + "\nPadres");
+        outReproducciones.println(Padre.VerCromosoma() + "\t|" + Padre.ValueCromosoma() + "\t|" + Padre.GetAdaptacion());
+        outReproducciones.println(Madre.VerCromosoma() + "\t|" + Madre.ValueCromosoma() + "\t|" + Madre.GetAdaptacion());
+        outReproducciones.println("Hijos");
+        outReproducciones.println(Hijo1.VerCromosoma() + "\t|" + Hijo1.ValueCromosoma() + "\t|" + Hijo1.GetAdaptacion());
+        outReproducciones.println(Hijo2.VerCromosoma() + "\t|" + Hijo2.ValueCromosoma() + "\t|" + Hijo2.GetAdaptacion());
+        outReproducciones.println("\n");
     } 
     public void writePoblacionResumeHeader() {
         outPoblacionResume.println("Campeon de");

@@ -1,0 +1,7 @@
+Precision 0.0001
+XMin 0.0 
+XMax 20.0
+TasaDeCruces 0.40
+TasaDeMutaciones 0.01
+TamanioPob 30
+NumGeneraciones 10

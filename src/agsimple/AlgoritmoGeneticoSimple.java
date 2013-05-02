@@ -108,9 +108,11 @@ public class AlgoritmoGeneticoSimple {
         for (i = 0; i<num_sel_cruce; i++) {
             hijo1 = new TIndividuo(Pob[sel_cruce[i]], Pob[sel_cruce[i+1]], lcrom, precision, punto_cruce);
             hijo2 = new TIndividuo(Pob[sel_cruce[i+1]], Pob[sel_cruce[i]], lcrom, precision, punto_cruce);
+            log.writeReproducciones(Pob[sel_cruce[i]], Pob[sel_cruce[i+1]], hijo1, hijo2, punto_cruce);
             Pob[sel_cruce[i]] = hijo1;
             Pob[sel_cruce[i+1]] = hijo2;
         }
+        log.writeReproduccionesEnd();
     }
     private void mutacion() {
         for (int i=0; i< tam_pob; i++) 
